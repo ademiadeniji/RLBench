@@ -100,8 +100,8 @@ class ShapenetClass:
     def __getitem__(self, idx):
         if idx >= self.num_instances:
             raise IndexError()
-        path = f"/shared/group/shapenetcore_v2/{self.synset_id}/{self.paths[idx]}/models/model_normalized.obj"
-        convex_dir = f"/shared/amberxie/shapenet/{self.synset_id}/{self.paths[idx]}"
+        path = f"/PATH/TO/shapenetcore_v2/{self.synset_id}/{self.paths[idx]}/models/model_normalized.obj"
+        convex_dir = f"/PATH/TO/shapenet/{self.synset_id}/{self.paths[idx]}"
         name = self.names[idx][np.random.randint(len(self.names[idx]))]
         return ShapenetObj(path, convex_dir, name, self.base_names[0])
 
@@ -114,7 +114,7 @@ class ShapenetClass:
 
 
 def get_shapenet_data(synset_id):
-    csv_base_dir = "/shared/amberxie/shapenet/metadata"
+    csv_base_dir = "/PATH/TO/shapenet/metadata"
     csv_file = f"{csv_base_dir}/{synset_id}.csv"
     paths, names = [], []
     with open(csv_file, newline='', encoding="utf-8") as csvfile:
@@ -129,7 +129,7 @@ def get_shapenet_data(synset_id):
 
 
 def read_shapenet(shapenet_to_generate):
-    json_file = "/shared/group/shapenetcore_v2/taxonomy.json"
+    json_file = "/PATH/TO/shapenetcore_v2/taxonomy.json"
 
     with open(json_file) as json_data:
         data = json.load(json_data)
